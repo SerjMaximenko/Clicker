@@ -16,21 +16,7 @@ main {
 
 @media (max-width:1000px) {
   main {
-    width: 90%;
-    height: 1500px;
-  }
-  .img {
-    width: 37%;
-    margin-top: 0;
-  }
-  h1, h2 {
-    font-size: 100px;
-    margin: 0;
-  }
-  button, input {
-    font-size: 50px;
-  }
-  h1 img {
-    width: 80px;
+    width: 40%;
+    height: 700px;
   }
 }
