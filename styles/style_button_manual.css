@@ -1,0 +1,63 @@
+.btn_global {
+  background: transparent linear-gradient(to bottom, rgba(100, 97, 110, 0.97), rgba(40, 140, 255, 0.85)) no-repeat center;
+  padding: 5px;
+  border-radius:10px;
+  text-decoration: none;
+  font-family: Titillium, Arial, sans-serif;
+  font-weight: 700;
+  color: white;
+  text-shadow: 2px 2px 4px rgba(0,0,0,1);
+  text-transform:uppercase;
+  font-size: .6em;
+  letter-spacing: .1em;
+  margin: 10px 5px 10px 20px;
+  cursor: pointer;
+  border: 0px;
+}
+.btn_global:hover {
+  transform: scale(1.1);
+}
+.btn_wide {
+  width: 200px;
+  height: 45px;
+  margin: 2px 5px;
+  white-space: normal;
+  word-wrap: break-word;
+}
+.btn_little {
+  width: 45px;
+  height: 45px;
+  white-space: normal;
+  word-wrap: break-word;
+  margin: 2px;
+}
+.button-container {
+  text-align: center; /* Выравнивание кнопок по центру */
+  margin: 0px;
+}
+.column1 {
+  display: inline-block;
+  vertical-align: top;
+  text-align: right;
+  width: 45%; /* Ширина каждого столбца */
+}
+.column2 {
+  display: inline-block;
+  vertical-align: top;
+  text-align: left;
+  width: 45%; /* Ширина каждого столбца */
+}
+
+.btn_text_description_manual {
+  margin: 0px 20px;
+}
+.btn_text_price_manual {
+  margin: 0px 20px;
+}
+
+
+/*input {*/
+/*  border-radius:20px;*/
+/*  cursor: pointer;*/
+/*  padding: 10px;*/
+/*}*/

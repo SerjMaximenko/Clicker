@@ -1,0 +1,36 @@
+main {
+  background-color: rgba(55, 87, 49, 0.4);
+  margin: 0 auto;
+  width: 40%;
+  border: 2px solid #333;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  text-align: center;
+}
+.button-img {
+  width: 300px;
+  height: auto;
+  margin: -55px -58px;
+}
+
+@media (max-width:1000px) {
+  main {
+    width: 90%;
+    height: 1500px;
+  }
+  .img {
+    width: 37%;
+    margin-top: 0;
+  }
+  h1, h2 {
+    font-size: 100px;
+    margin: 0;
+  }
+  button, input {
+    font-size: 50px;
+  }
+  h1 img {
+    width: 80px;
+  }
+}

@@ -1,0 +1,26 @@
+.money-container {
+  display: flex;
+  justify-content: center; /* Центрирование по горизонтали */
+  align-items: center; /* Центрирование по вертикали */
+  background-color: #ffffff;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  padding: 10px;
+  max-width: 300px;
+  text-align: center;
+  margin: 0 auto; /* Центрирование по горизонтали */
+}
+
+.amount {
+  font-size: 2em;
+  color: #2e8b57;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+}
+
+.money-img {
+  width: 30px;
+  height: auto;
+  margin-right: 5px;
+}
