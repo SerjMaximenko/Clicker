@@ -6,13 +6,13 @@
   border-radius: 10px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   padding: 10px;
-  max-width: 300px;
+  max-width: 600px;
   text-align: center;
   margin: 0 auto; /* Центрирование по горизонтали */
 }
 
 .amount {
-  font-size: 2em;
+  font-size: 6em;
   color: #2e8b57;
   font-weight: bold;
   display: flex;
@@ -20,7 +20,7 @@
 }
 
 .money-img {
-  width: 30px;
+  width: 60px;
   height: auto;
   margin-right: 5px;
 }
