@@ -5,11 +5,28 @@ tg.WebApp.BackButton.hide();
 tg.WebApp.MainButton.hide();
 tg.WebApp.SettingsButton.hide();
 
+
+
 //7310031848:AAEpobPhjc3Htv8B5MrXyRSUqN1ExDo6h-s
 let score = 1000;
 let updating = 1;
 
 function clickBtn() {
+  Telegram.WebApp.showPopup({
+    title  : 'Popup title',
+    message: 'Popup message',
+    buttons: [
+      {id: 'delete', type: 'destructive', text: 'Delete all'},
+      {id: 'faq', type: 'default', text: 'Open FAQ'},
+      {type: 'cancel'},
+    ]
+  }, function (buttonId) {
+    if (buttonId === 'delete') {
+      DemoApp.showAlert("'Delete all' selected");
+    } else if (buttonId === 'faq') {
+      Telegram.WebApp.openLink('https://telegram.org/faq');
+    }
+  });
   score = score + updating;
   document.getElementById("money_img").innerText = score.toLocaleString();
 }
