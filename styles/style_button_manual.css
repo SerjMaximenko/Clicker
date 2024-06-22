@@ -27,6 +27,7 @@
   margin: 2px 2px;
   white-space: normal;
   word-wrap: break-word;
+  -webkit-tap-highlight-color: transparent;
 }
 .btn_little {
   width: 45px;
