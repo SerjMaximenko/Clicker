@@ -8,20 +8,23 @@
   color: white;
   text-shadow: 2px 2px 4px rgba(0,0,0,1);
   text-transform:uppercase;
-  font-size: 1.5em;
+  font-size: 0.5em;
   letter-spacing: .1em;
-  margin: 30px 30px 20px 40px;
+  margin: 10px 10px 7px 10px;
   cursor: pointer;
   border: 0px;
   transition: transform 0.3s;
+}
+.btn_global:focus {
+  outline: none; /* Убирает фокусовую обводку после нажатия кнопки */
 }
 .btn_global:active {
   transform: scale(1.05);
 }
 .btn_wide {
-  width: 400px;
-  height: 100px;
-  margin: 10px 15px;
+  width: 140px;
+  height: 45px;
+  margin: 2px 2px;
   white-space: normal;
   word-wrap: break-word;
 }

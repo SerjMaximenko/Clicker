@@ -34,7 +34,7 @@ function handleAutoButtonClick(auto_active, autoLvl, buttonId, progressBarId, pr
       setInterval(function () {
         progress++;
         let progressBar = document.getElementById(progressBarId);
-        progressBar.style.width = (progress / duration) * 190 + 'px';
+        progressBar.style.width = (progress / duration) * 130 + 'px';
         if (progress === duration) {
           score = score + autoLvl;
           document.getElementById("money_img").innerText = score.toLocaleString();
