@@ -1,20 +1,13 @@
-function openFullscreen() {
-  let elem = document.documentElement;
-  if (elem.requestFullscreen) {
-    elem.requestFullscreen();
-  } else if (elem.mozRequestFullScreen) { // Firefox
-    elem.mozRequestFullScreen();
-  } else if (elem.webkitRequestFullscreen) { // Chrome, Safari, Opera
-    elem.webkitRequestFullscreen();
-  } else if (elem.msRequestFullscreen) { // IE/Edge
-    elem.msRequestFullscreen();
+let tg = window.Telegram;
+if(tg !== undefined){
+  if (tg.WebApp !== undefined && tg.WebApp.initData !== undefined){
+    let safe = tg.WebApp.initData;
+
+    tg.WebApp.backgroundColor = '#3d3d3d';
+    tg.WebApp.headerColor = '#212121';
+    tg.WebApp.expand();
   }
 }
-
-// Вызовите функцию после загрузки страницы
-document.addEventListener('DOMContentLoaded', (event) => {
-  openFullscreen();
-});
 
 let score = 1000;
 let updating = 1;
