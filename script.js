@@ -1,3 +1,21 @@
+function openFullscreen() {
+  let elem = document.documentElement;
+  if (elem.requestFullscreen) {
+    elem.requestFullscreen();
+  } else if (elem.mozRequestFullScreen) { // Firefox
+    elem.mozRequestFullScreen();
+  } else if (elem.webkitRequestFullscreen) { // Chrome, Safari, Opera
+    elem.webkitRequestFullscreen();
+  } else if (elem.msRequestFullscreen) { // IE/Edge
+    elem.msRequestFullscreen();
+  }
+}
+
+// Вызовите функцию после загрузки страницы
+document.addEventListener('DOMContentLoaded', (event) => {
+  openFullscreen();
+});
+
 let score = 1000;
 let updating = 1;
 
