@@ -1,4 +1,5 @@
 let tg = window.Telegram;
+tg.WebApp.ready();
 tg.WebApp.expand();
 
 //7310031848:AAEpobPhjc3Htv8B5MrXyRSUqN1ExDo6h-s
