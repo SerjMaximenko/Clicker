@@ -1,14 +1,7 @@
 let tg = window.Telegram;
-if(tg !== undefined){
-  if (tg.WebApp !== undefined && tg.WebApp.initData !== undefined){
-    let safe = tg.WebApp.initData;
+tg.WebApp.expand();
 
-    tg.WebApp.backgroundColor = '#3d3d3d';
-    tg.WebApp.headerColor = '#212121';
-    tg.WebApp.expand();
-  }
-}
-
+//7310031848:AAEpobPhjc3Htv8B5MrXyRSUqN1ExDo6h-s
 let score = 1000;
 let updating = 1;
 
