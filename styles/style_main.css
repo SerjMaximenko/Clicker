@@ -2,6 +2,7 @@ main {
   background-color: rgba(55, 87, 49, 0.4);
   margin: 0 auto;
   width: 40%;
+  height: 520px;
   border: 2px solid #333;
   padding: 20px;
   border-radius: 10px;
@@ -14,9 +15,9 @@ main {
   margin: -55px -58px;
 }
 
-@media (max-width:1000px) {
-  main {
-    width: 40%;
-    height: 700px;
-  }
-}
+/*@media (max-width:1000px) {*/
+/*  main {*/
+/*    width: 40%;*/
+/*    height: 700px;*/
+/*  }*/
+/*}*/
