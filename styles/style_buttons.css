@@ -16,7 +16,7 @@
   transform: scale(1.1);
 }
 .btn_global {
-  background: transparent linear-gradient(to bottom, rgba(100, 97, 110, 0.97), rgba(40, 140, 255, 0.85)) no-repeat center;
+  background: url('/images/machine_2.png') left center / 50% 100% no-repeat, transparent linear-gradient(to bottom, rgba(100, 97, 110, 0.97), rgba(40, 140, 255, 0.85)) no-repeat center;
   padding: 5px;
   border-radius:10px;
   text-decoration: none;
