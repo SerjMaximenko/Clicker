@@ -1,13 +1,3 @@
-let tg = window.Telegram;
-tg.WebApp.ready();
-tg.WebApp.expand();
-tg.WebApp.BackButton.hide();
-tg.WebApp.MainButton.hide();
-tg.WebApp.SettingsButton.hide();
-
-
-
-//7310031848:AAEpobPhjc3Htv8B5MrXyRSUqN1ExDo6h-s
 let score = 1000;
 let updating = 1;
 
