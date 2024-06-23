@@ -1,27 +1,7 @@
 let score = 1000;
 let updating = 1;
 
-function clickBtn() {
-  Telegram.WebApp.showPopup({
-    title  : 'Popup title',
-    message: 'Popup message',
-    buttons: [
-      {id: 'delete', type: 'destructive', text: 'Delete all'},
-      {id: 'faq', type: 'default', text: 'Open FAQ'},
-      {type: 'cancel'},
-    ]
-  }, function (buttonId) {
-    if (buttonId === 'delete') {
-      DemoApp.showAlert("'Delete all' selected");
-    } else if (buttonId === 'faq') {
-      Telegram.WebApp.openLink('https://telegram.org/faq');
-    }
-  });
-  score = score + updating;
-  document.getElementById("money_img").innerText = score.toLocaleString();
-}
-
-function updateButtonValue2(buttonId, price, value) {
+function updateButtonValue(buttonId, price, value) {
   const button = document.getElementById(buttonId);
   button.addEventListener("click", function() {
     score = score - price;
@@ -30,10 +10,10 @@ function updateButtonValue2(buttonId, price, value) {
     updating += value;
   });
 }
-updateButtonValue2("btn_manual_1", 100, 1)
-updateButtonValue2("btn_manual_2", 150, 2)
-updateButtonValue2("btn_manual_3", 250, 3)
-updateButtonValue2("btn_manual_4", 500,10)
+updateButtonValue("btn_manual_1", 100, 1)
+updateButtonValue("btn_manual_2", 150, 2)
+updateButtonValue("btn_manual_3", 250, 3)
+updateButtonValue("btn_manual_4", 500,10)
 
 function handleAutoButtonClick(auto_active, autoLvl, buttonId, progressBarId, priceId, lvlId, cost, duration) {
   const button = document.getElementById(buttonId);
