@@ -1,6 +1,11 @@
 let score = 1000;
 let updating = 1;
 
+function clickBtn() {
+  score = score + updating;
+  document.getElementById("money_img").innerText = score.toLocaleString();
+}
+
 function updateButtonValue(buttonId, price, value) {
   const button = document.getElementById(buttonId);
   button.addEventListener("click", function() {
