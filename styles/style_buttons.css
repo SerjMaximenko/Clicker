@@ -25,7 +25,7 @@
   color: white;
   text-shadow: 2px 2px 4px rgba(0,0,0,1);
   text-transform:uppercase;
-  font-size: 0.5em;
+  font-size: 0.8em;
   letter-spacing: .1em;
   margin: 2px 2px 7px 10px;
   cursor: pointer;
@@ -43,7 +43,7 @@
 .btn_global:active {
   transform: scale(1.05);
 }
-.scrolling-panel {
+#scrolling-panel {
   height: 300px;
   width: 90%;
   margin: 5%;
@@ -70,13 +70,13 @@
 .btn_text_price {
 }
 
-#progressBar, #progressBar2, #progressBar3, #progressBar4 {
+.progressBar {
   background: #4caf50 linear-gradient(to bottom, rgba(120, 107, 175, .5), rgba(40, 140, 255, .3));
   border-radius:10px;
   bottom: 0;
   left: 0;
-  height: 10px;
+  height: 14px;
   width: 0;
-  margin: 2px 0 2px 2px;
+  margin: 5px 0 2px 2px;
   transition: width 0.1s;
 }

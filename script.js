@@ -1,6 +1,42 @@
 let score = 1000;
 let updating = 1;
 
+handleAutoButtonClick( 1, 100, 1000);
+
+updateButtonValue(`btn_manual_1`, 100, 1);
+
+document.addEventListener("DOMContentLoaded", function() {
+
+
+  // Количество копий
+  const numCopies = 5; // укажите необходимое количество копий
+
+  // Находим исходный элемент
+  const originalButton = document.getElementById("btn_auto_1");
+
+  // Находим контейнер для кнопок
+  const container = document.getElementById("scrolling-panel");
+
+  for (let i = 0; i < numCopies; i++) {
+    // Клонируем элемент
+    let clone = originalButton.cloneNode(true);
+
+    // Обновляем id у клонированного элемента и его вложенных частей, чтобы они были уникальными
+    clone.id = `btn_auto_${i + 2}`; // уникальный id для каждого клона
+    clone.querySelector('.btn_text_level').id = `btn_auto_${i + 2}_lvl`;
+    clone.querySelector('.btn_text_price').id = `btn_auto_${i + 2}_price`;
+    clone.querySelector('.progressBar').id = `progress_bar_${i + 2}`;
+
+    // Вставляем клонированный элемент в контейнер
+    container.appendChild(clone);
+    updateButtonValue(clone.id, 100, 1);
+
+    let auto_1_active = false;
+    let autoLvl1 = 1;
+    handleAutoButtonClick(i+2, 100, 1000);
+  }
+});
+
 function clickBtn() {
   score = score + updating;
   document.getElementById("money_img").innerText = score.toLocaleString();
@@ -15,12 +51,16 @@ function updateButtonValue(buttonId, price, value) {
     updating += value;
   });
 }
-updateButtonValue("btn_manual_1", 100, 1)
-updateButtonValue("btn_manual_2", 150, 2)
-updateButtonValue("btn_manual_3", 250, 3)
-updateButtonValue("btn_manual_4", 500,10)
 
-function handleAutoButtonClick(auto_active, autoLvl, buttonId, progressBarId, priceId, lvlId, cost, duration) {
+function handleAutoButtonClick(index, cost, duration) {
+  let auto_active = false;
+  let autoLvl = 1;
+
+  let buttonId = `btn_auto_${index}`;
+  let progressBarId = `progress_bar_${index}`;
+  let priceId = `btn_auto_${index}_price`;
+  let lvlId = `btn_auto_${index}_lvl`;
+
   const button = document.getElementById(buttonId);
   button.addEventListener("click", function() {
     score = score - cost * autoLvl;
@@ -34,7 +74,7 @@ function handleAutoButtonClick(auto_active, autoLvl, buttonId, progressBarId, pr
       setInterval(function () {
         progress++;
         let progressBar = document.getElementById(progressBarId);
-        progressBar.style.width = (progress / duration) * 130 + 'px';
+        progressBar.style.width = (progress / duration) * 100 + '%';
         if (progress === duration) {
           score = score + autoLvl;
           document.getElementById("money_img").innerText = score.toLocaleString();
@@ -49,22 +89,6 @@ function handleAutoButtonClick(auto_active, autoLvl, buttonId, progressBarId, pr
     if1();
   });
 }
-
-let auto_1_active = false;
-let autoLvl1 = 1;
-handleAutoButtonClick(auto_1_active, autoLvl1, "btn_auto_1", "progressBar", "btn_auto_1_price", "btn_auto_1_lvl", 100, 1000);
-
-let auto_2_active = false;
-let autoLvl2 = 1;
-handleAutoButtonClick(auto_2_active, autoLvl2, "btn_auto_2", "progressBar2", "btn_auto_2_price", "btn_auto_2_lvl", 200, 500);
-
-let auto_3_active = false;
-let autoLvl3 = 1;
-handleAutoButtonClick(auto_3_active, autoLvl3, "btn_auto_3", "progressBar3", "btn_auto_3_price", "btn_auto_3_lvl", 500, 300);
-
-let auto_4_active = false;
-let autoLvl4 = 1;
-handleAutoButtonClick(auto_4_active, autoLvl2, "btn_auto_4", "progressBar4", "btn_auto_4_price", "btn_auto_4_lvl", 1000, 100);
 
 function if1 () {
   if (score < -100) {
