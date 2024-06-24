@@ -3,6 +3,7 @@ let updating = 1;
 
 const numButtonCopies = 5; // укажите необходимое количество копий
 let autoLVLs = [];
+let autoLVLUpMultiply = [0.1, 0.2, 0.3, 0.4, 0.5];
 
 for (let i = 0; i < numButtonCopies+2; i++) {
   autoLVLs.push(1);
@@ -10,10 +11,7 @@ for (let i = 0; i < numButtonCopies+2; i++) {
 
 document.addEventListener("DOMContentLoaded", function() {
 
-
   const clickableArea = document.getElementById('clickable-area');
-
-
   clickableArea.addEventListener('click', function(event) {
     // Создаем новый элемент с текстом
     const message = document.createElement('div');
@@ -57,8 +55,6 @@ document.addEventListener("DOMContentLoaded", function() {
     score = score + updating;
     document.getElementById("money_img").innerText = score.toLocaleString();
   });
-
-
 
   const container = document.getElementById("scrolling-panel");
 
@@ -113,7 +109,7 @@ document.addEventListener("DOMContentLoaded", function() {
     const span2 = document.createElement('span');
     span2.classList.add(`btn_text_price`);
     span2.id = `btn_auto_${i + 1}_price_test`;
-    span2.textContent = `100$`;
+    span2.textContent = 100 * autoLVLUpMultiply[i] + `$`;
 
     button.appendChild(span1);
     button.appendChild(span2);
@@ -148,11 +144,13 @@ function handleAutoButtonClick(index, cost, duration) {
 
   const button = document.getElementById(buttonId);
   button.addEventListener("click", function() {
-    score = score - cost * autoLVLs[index];
-    document.getElementById("money_img").innerText = score.toLocaleString();
-    let progress = 0;
     if (auto_active === false) {
+      score = score - cost + autoLVLs[index];
+      document.getElementById("money_img").innerText = score.toLocaleString();
+      if1();
+      let progress = 0;
       auto_active = true;
+      button.disabled = true;
       setInterval(function () {
         progress++;
         let progressBar = document.getElementById(progressBarId);
@@ -164,7 +162,6 @@ function handleAutoButtonClick(index, cost, duration) {
         }
       }, 10);
     }
-    if1();
   });
 }
 
@@ -175,11 +172,11 @@ function handleLVLUpAutoButton(index, cost) {
 
   const button = document.getElementById(buttonId);
   button.addEventListener("click", function() {
-    score = score - cost * autoLVLs[index];
+    score = score - cost * autoLVLs[index] * autoLVLUpMultiply[index - 1];
     document.getElementById("money_img").innerText = score.toLocaleString();
     let btn_text = document.getElementById(priceId);
     autoLVLs[index] += 1;
-    btn_text.innerHTML = cost * autoLVLs[index] + "$";
+    btn_text.innerHTML = cost * autoLVLs[index] * autoLVLUpMultiply[index - 1] + "$";
     let btn_lvl = document.getElementById(lvlId);
     btn_lvl.innerHTML = "Lvl " + autoLVLs[index];
     if1();
