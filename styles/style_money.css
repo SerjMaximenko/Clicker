@@ -8,7 +8,7 @@
   padding: 10px;
   max-width: 300px;
   text-align: center;
-  margin: 0 auto; /* Центрирование по горизонтали */
+  margin: 5px auto; /* Центрирование по горизонтали */
 }
 
 .amount {
@@ -17,31 +17,37 @@
   font-weight: bold;
   display: flex;
   align-items: center;
+  user-select: none;
 }
 
 .money-img {
   width: 60px;
   height: auto;
   margin-right: 5px;
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
 }
 
 #clickable-area {
   background: #007bff linear-gradient(45deg, #5e7a9c, #3665bd);
+  -webkit-tap-highlight-color: transparent;
   color: white;
   border-radius: 5px;
   cursor: pointer;
-  margin: 0 0 5px 5px;
-  height: 150px;
+  margin: 0 3px 0 3px;
+  height: calc(80vw);
+  max-height: 400px;
+  padding: 5px;
 }
 
 .message {
   position: absolute;
   padding: 10px;
-  /*background-color: #333;*/
-  /*background-color: rgba(0, 0, 0, 0.5);*/
   color: white;
   border-radius: 5px;
   transform: translate(-50%, -50%);
   transition: opacity 2s;
   opacity: 1;
+  user-select: none;
+  cursor: pointer;
 }
