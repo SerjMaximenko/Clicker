@@ -16,7 +16,7 @@
   transform: scale(1.1);
 }
 .btn_global {
-  background: url('/images/machine_2.png') left center / 50% 100% no-repeat, transparent linear-gradient(to bottom, rgba(100, 97, 110, 0.97), rgba(40, 140, 255, 0.85)) no-repeat center;
+  background: transparent linear-gradient(to bottom, rgba(100, 97, 110, 0.97), rgba(40, 140, 255, 0.85)) no-repeat center;
   padding: 5px;
   border-radius:10px;
   text-decoration: none;
@@ -25,7 +25,7 @@
   color: white;
   text-shadow: 2px 2px 4px rgba(0,0,0,1);
   text-transform:uppercase;
-  font-size: 0.8em;
+  font-size: calc(0.7rem + 0.4vw);
   letter-spacing: .1em;
   margin: 2px 2px 7px 10px;
   cursor: pointer;
@@ -36,6 +36,12 @@
   white-space: normal;
   word-wrap: break-word;
   -webkit-tap-highlight-color: transparent;
+
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  grid-template-rows: repeat(2, 1fr);
+  grid-column-gap: 2px;
+  grid-row-gap: 0px;
 }
 .btn_global:focus {
   outline: none; /* Убирает фокусовую обводку после нажатия кнопки */
@@ -63,20 +69,30 @@
 .btn_text_price_manual {
   margin: 0px 20px;
 }
-.btn_text_description {
-}.btn_text_level {
-   margin: 0px 20px;
- }
-.btn_text_price {
-}
 
+.button_img{
+  height: 100%;
+  grid-area: 1 / 1 / 3 / 2;
+}
+.btn_text_description {
+  grid-area: 1 / 2 / 2 / 5;
+  height: 90%;
+}
+.btn_text_level {
+  grid-area: 1 / 5 / 2 / 6;
+  height: 90%;
+}
+.btn_text_price {
+  grid-area: 2 / 5 / 3 / 6;
+  height: 90%;
+}
 .progressBar {
   background: #4caf50 linear-gradient(to bottom, rgba(120, 107, 175, .5), rgba(40, 140, 255, .3));
   border-radius:10px;
   bottom: 0;
   left: 0;
-  height: 14px;
   width: 0;
-  margin: 5px 0 2px 2px;
   transition: width 0.1s;
+  height: 90%;
+  grid-area: 2 / 2 / 3 / 5;
 }

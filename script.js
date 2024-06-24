@@ -8,10 +8,6 @@ for (let i = 0; i < numButtonCopies+2; i++) {
   autoLVLs.push(1);
 }
 
-// handleAutoButtonClick( 1, 100, 1000);
-//
-// updateButtonValue(`btn_manual_1`, 100, 1);
-
 document.addEventListener("DOMContentLoaded", function() {
   const container = document.getElementById("scrolling-panel");
 
@@ -34,13 +30,17 @@ document.addEventListener("DOMContentLoaded", function() {
 
     const span3 = document.createElement('span');
     span3.classList.add(`btn_text_price`);
-    span3.id = `btn_auto_${machineNumber}_price`;
     span3.textContent = cost + `$`;
 
     const progressBar = document.createElement('div');
     progressBar.classList.add(`progressBar`);
     progressBar.id = `progress_bar_${machineNumber}`;
 
+    const img = document.createElement('img');
+    img.classList.add(`button_img`);
+    img.src = 'images/machine_2.png';
+
+    button.appendChild(img);
     button.appendChild(span1);
     button.appendChild(span2);
     button.appendChild(span3);
@@ -57,7 +57,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
     const span1 = document.createElement('span');
     span1.classList.add(`btn_text_description`);
-    span1.textContent = `1 Lvl up.`;
+    span1.textContent = `Machine ${i + 1} Lvl up.`;
 
     const span2 = document.createElement('span');
     span2.classList.add(`btn_text_price`);
@@ -99,16 +99,11 @@ function handleAutoButtonClick(index, cost, duration) {
 
   let buttonId = `btn_auto_${index}`;
   let progressBarId = `progress_bar_${index}`;
-  let priceId = `btn_auto_${index}_price`;
-  let lvlId = `btn_auto_${index}_lvl`;
 
   const button = document.getElementById(buttonId);
   button.addEventListener("click", function() {
     score = score - cost * autoLVLs[index];
     document.getElementById("money_img").innerText = score.toLocaleString();
-    let btn_text = document.getElementById(priceId);
-    btn_text.innerHTML = cost * (autoLVLs[index] + 1) + "$";
-
     let progress = 0;
     if (auto_active === false) {
       auto_active = true;
@@ -116,16 +111,12 @@ function handleAutoButtonClick(index, cost, duration) {
         progress++;
         let progressBar = document.getElementById(progressBarId);
         progressBar.style.width = (progress / duration) * 100 + '%';
-        if (progress === duration) {
+        if (progress >= duration) {
           score = score + autoLVLs[index];
           document.getElementById("money_img").innerText = score.toLocaleString();
           progress = 0;
         }
       }, 10);
-    } else {
-      autoLVLs[index] += 1;
-      let btn_lvl = document.getElementById(lvlId);
-      btn_lvl.innerHTML = "Lvl " + autoLVLs[index];
     }
     if1();
   });
