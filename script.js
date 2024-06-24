@@ -3,7 +3,7 @@ let updating = 1;
 
 const numButtonCopies = 5; // укажите необходимое количество копий
 let autoLVLs = [];
-let autoLVLUpMultiply = [0.1, 0.2, 0.3, 0.4, 0.5];
+let autoLVLUpMultiply = [0.05, 0.1, 0.15, 0.2, 0.25];
 
 for (let i = 0; i < numButtonCopies+2; i++) {
   autoLVLs.push(1);
