@@ -9,6 +9,57 @@ for (let i = 0; i < numButtonCopies+2; i++) {
 }
 
 document.addEventListener("DOMContentLoaded", function() {
+
+
+  const clickableArea = document.getElementById('clickable-area');
+
+
+  clickableArea.addEventListener('click', function(event) {
+    // Создаем новый элемент с текстом
+    const message = document.createElement('div');
+    message.textContent = '+ 1';
+    message.className = 'message';
+
+    // Задаем расположение элемента
+    message.style.left = `${event.pageX+15}px`;
+    message.style.top = `${event.pageY}px`;
+
+    // Добавляем обработчик клика, чтобы клик по message выполнял клик по body
+    message.addEventListener('click', function(event) {
+      event.stopPropagation(); // Останавливаем всплытие события
+
+      // Создаем новое событие клика
+      const clickEvent = new MouseEvent('click', {
+        bubbles: true,
+        cancelable: true,
+        view: window,
+        clientX: event.clientX,
+        clientY: event.clientY
+      });
+
+      // Генерируем клик по body
+      clickableArea.dispatchEvent(clickEvent);
+    });
+
+    // Добавляем элемент на страницу
+    const main = document.getElementsByTagName("main")[0];
+    document.body.appendChild(message);
+
+    // Удаляем элемент через 2 секунды с плавным исчезновением
+    setTimeout(() => {
+      message.style.opacity = '0';
+      // Удаляем элемент из DOM через 1 секунду после начала анимации
+      setTimeout(() => {
+        document.body.removeChild(message);
+      }, 2000);
+    }, 300);
+
+    score = score + updating;
+    document.getElementById("money_img").innerText = score.toLocaleString();
+  });
+
+
+
   const container = document.getElementById("scrolling-panel");
 
   function initAutoButtons(i) {
@@ -78,11 +129,6 @@ document.addEventListener("DOMContentLoaded", function() {
     initLVLUpAutoButtons(i);
   }
 });
-
-function clickBtn() {
-  score = score + updating;
-  document.getElementById("money_img").innerText = score.toLocaleString();
-}
 
 function updateButtonValue(buttonId, price, value) {
   const button = document.getElementById(buttonId);
