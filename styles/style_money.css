@@ -10,7 +10,6 @@
   text-align: center;
   margin: 5px auto; /* Центрирование по горизонтали */
 }
-
 .amount {
   font-size: 2em;
   color: #2e8b57;
@@ -28,30 +27,74 @@
   -webkit-tap-highlight-color: transparent;
 }
 
-#clickable-area {
-  background: #007bff linear-gradient(45deg, #5e7a9c, #3665bd);
-  -webkit-tap-highlight-color: transparent;
-  color: white;
-  border-radius: 5px;
-  cursor: pointer;
-  margin: 0 3px 0 3px;
-  height: calc(80vw);
-  max-height: 400px;
-  padding: 5px;
+.clickable-area {
+    background-color: #FCF5E4;
+    -webkit-tap-highlight-color: transparent;
+    color: white;
+    border-radius: 5px;
+    cursor: pointer;
+    margin: 0 3px 0 3px;
+    grid-area: 1 / 1 / 2 / 1;
 }
 
-.message {
-  position: absolute;
-  padding: 10px;
-  font-family: 'Roboto Mono', monospace;
-  font-size: 1.5em;
-  font-weight: bold;
-  color: #fffc29; /* Зеленый цвет для положительных значений */
-  border-radius: 5px;
-  transform: translate(-50%, -50%);
-  transition: opacity 2s;
-  opacity: 1;
-  user-select: none;
-  cursor: pointer;
-  -webkit-tap-highlight-color: transparent;
+/*.message {*/
+/*  position: absolute;*/
+/*  padding: 10px;*/
+/*  font-family: 'Roboto Mono', monospace;*/
+/*  font-size: 1.5em;*/
+/*  font-weight: bold;*/
+/*  color: #fffc29; !* Зеленый цвет для положительных значений *!*/
+/*  border-radius: 5px;*/
+/*  transform: translate(-50%, -50%);*/
+/*  transition: opacity 2s;*/
+/*  opacity: 1;*/
+/*  user-select: none;*/
+/*  cursor: pointer;*/
+/*  -webkit-tap-highlight-color: transparent;*/
+/*}*/
+
+
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.dropdown-toggle {
+    background-color: #2f3f44;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.dropdown-toggle::after {
+    content: ' ▼';
+    margin-left: 10px;
+}
+
+.dropdown-menu {
+    display: none;
+    position: absolute;
+    background-color: white;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+    border-radius: 5px;
+    margin-top: 5px;
+    z-index: 1;
+}
+
+.dropdown-item {
+    padding: 10px 20px;
+    cursor: pointer;
+    border-bottom: 1px solid #f0f0f0;
+}
+
+.dropdown-item:last-child {
+    border-bottom: none;
+}
+
+.dropdown-item:hover {
+    background-color: #3498db;
+    color: white;
 }

@@ -6,22 +6,30 @@
   <link rel="stylesheet" href="styles/style_main.css">
   <link rel="stylesheet" href="styles/style_buttons.css">
   <link rel="stylesheet" href="styles/style_money.css">
-  <script src="https://telegram.org/js/telegram-web-app.js"></script>
-  <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 </head>
   <body>
     <main>
-      <div id="clickable-area">
-        <div class="money-container">
+      <div class="clickable-area">
+        <div class="money-container">,
           <div class="amount">
-            <img src="images/img_mech_2.png" alt="Money Image" class="money-img">
+            <img src="images/money.png" alt="Money Image" class="money-img">
             <span id="money_img" >1 000</span>
+          </div>
+        </div>
+        <div class="dropdown">
+          <button class="dropdown-toggle main_text" id="dropdownButton">X1</button>
+          <div class="dropdown-menu main_text" id="dropdownMenu">
+            <div class="dropdown-item main_text">X1</div>
+            <div class="dropdown-item main_text">X5</div>
+            <div class="dropdown-item main_text">X10</div>
+            <div class="dropdown-item main_text">X100</div>
+            <div class="dropdown-item main_text">X1000</div>
           </div>
         </div>
       </div>
       <div id="scrolling-panel"></div>
-      <input type="button" class="btn_global" value="Подробнее" onclick="reboot()">
+      <div class="bottom-panel"></div>
     </main>
   <script src="./script.js"></script>
   </body>

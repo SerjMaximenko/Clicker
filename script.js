@@ -1,193 +1,150 @@
+let imgName = ["gas.png", "sber.png", "mts.png", "yndx.png", "lukoil.png", "sber.png", "mts.png", "sber.png", "mts.png"];
+let tickers = ["GAZP", "SBER", "MTSS", "YNDX", "LKOH", "LKOH", "LKOH", "LKOH", "LKOH"];
+
 let score = 1000;
-let updating = 1;
 
-const numButtonCopies = 5; // укажите необходимое количество копий
-let autoLVLs = [];
-let autoLVLUpMultiply = [0.05, 0.1, 0.15, 0.2, 0.25];
-
-for (let i = 0; i < numButtonCopies+2; i++) {
-  autoLVLs.push(1);
-}
 
 document.addEventListener("DOMContentLoaded", function() {
 
-  const clickableArea = document.getElementById('clickable-area');
-  clickableArea.addEventListener('click', function(event) {
-    // Создаем новый элемент с текстом
-    const message = document.createElement('div');
-    message.textContent = '+ 1';
-    message.className = 'message';
 
-    // Задаем расположение элемента
-    message.style.left = `${event.pageX+15}px`;
-    message.style.top = `${event.pageY}px`;
+    function initDropBox() {
+        const dropdownButton = document.getElementById('dropdownButton');
+        const dropdownMenu = document.getElementById('dropdownMenu');
+        const dropdownItems = dropdownMenu.getElementsByClassName('dropdown-item');
 
-    // Добавляем обработчик клика, чтобы клик по message выполнял клик по body
-    message.addEventListener('click', function(event) {
-      event.stopPropagation(); // Останавливаем всплытие события
+        dropdownButton.addEventListener('click', () => {
+            dropdownMenu.style.display = dropdownMenu.style.display === 'block' ? 'none' : 'block';
+        });
 
-      // Создаем новое событие клика
-      const clickEvent = new MouseEvent('click', {
-        bubbles: true,
-        cancelable: true,
-        view: window,
-        clientX: event.clientX,
-        clientY: event.clientY
-      });
+        for (let item of dropdownItems) {
+            item.addEventListener('click', (event) => {
+                dropdownButton.textContent = event.target.textContent;
+                dropdownMenu.style.display = 'none';
+            });
+        }
 
-      // Генерируем клик по body
-      clickableArea.dispatchEvent(clickEvent);
-    });
+        document.addEventListener('click', (event) => {
+            if (!dropdownButton.contains(event.target) && !dropdownMenu.contains(event.target)) {
+                dropdownMenu.style.display = 'none';
+            }
+        });
+    }
 
-    // Добавляем элемент на страницу
-    const main = document.getElementsByTagName("main")[0];
-    document.body.appendChild(message);
+    const scrollingPanel = document.getElementById("scrolling-panel");
 
-    // Удаляем элемент через 2 секунды с плавным исчезновением
-    setTimeout(() => {
-      message.style.opacity = '0';
-      // Удаляем элемент из DOM через 1 секунду после начала анимации
-      setTimeout(() => {
-        document.body.removeChild(message);
-      }, 2000);
-    }, 300);
+    function initSections(index) {
+        const divOneSectionContainer = document.createElement('div');
 
-    score = score + updating;
-    document.getElementById("money_img").innerText = score.toLocaleString();
-  });
+        const buttonBuy = document.createElement('button');
+        const buttonSell = document.createElement('button');
 
-  const container = document.getElementById("scrolling-panel");
+        const divInfo = document.createElement('div');
+        const spanCost = document.createElement('span');
+        const spanDividends = document.createElement('span');
+        const spanQuantity = document.createElement('span');
+        const spanPriceChange = document.createElement('span');
 
-  function initAutoButtons(i) {
-    let machineNumber = i + 1;
-    let cost = 100 * machineNumber;
+        const infoImg = document.createElement('img');
 
-    const button = document.createElement('button');
-    button.id = `btn_auto_${machineNumber}`;
-    button.classList.add(`btn_global`);
+        divOneSectionContainer.classList.add('section_container');
+        divInfo.classList.add('info_panel');
 
-    const span1 = document.createElement('span');
-    span1.classList.add(`btn_text_description`);
-    span1.textContent = `Machine ` + machineNumber;
+        buttonBuy.classList.add('button_buy');
+        buttonBuy.textContent = "Buy";
+        buttonSell.classList.add('button_sell');
+        buttonSell.textContent = "Sell";
 
-    const span2 = document.createElement('span');
-    span2.classList.add(`btn_text_level`);
-    span2.id = `btn_auto_${machineNumber}_lvl`;
-    span2.textContent = `Lvl 1`;
+        spanCost.classList.add('main_text');
+        spanCost.classList.add('cost_text');
+        spanCost.id = "cost_text_" + index;
+        spanDividends.classList.add('main_text');
+        spanDividends.classList.add('dividends_text');
+        spanDividends.id = "dividends_text_" + index;
+        spanQuantity.classList.add('main_text');
+        spanQuantity.classList.add('quantity_text');
+        spanQuantity.id = "quantity_text_" + index;
+        spanPriceChange.classList.add('main_text');
+        spanPriceChange.classList.add('price_change_text');
+        spanPriceChange.id = "price_change_text_" + index;
 
-    const span3 = document.createElement('span');
-    span3.classList.add(`btn_text_price`);
-    span3.textContent = cost + `$`;
 
-    const progressBar = document.createElement('div');
-    progressBar.classList.add(`progressBar`);
-    progressBar.id = `progress_bar_${machineNumber}`;
+        setBuyButtonEvent(buttonBuy, spanQuantity, spanCost, 100);
 
-    const img = document.createElement('img');
-    img.classList.add(`button_img`);
-    img.src = 'images/machine_2.png';
+        infoImg.classList.add("info_img");
+        infoImg.src = 'images/' + imgName[index];
 
-    button.appendChild(img);
-    button.appendChild(span1);
-    button.appendChild(span2);
-    button.appendChild(span3);
-    button.appendChild(progressBar);
-    container.appendChild(button);
+        getPriceInUSD(spanCost, tickers[index]);
+        spanDividends.textContent = "100.12$"
+        spanQuantity.textContent = "100"
+        spanPriceChange.textContent = "100.12$"
 
-    handleAutoButtonClick(machineNumber, cost, 1000/machineNumber);
-  }
+        divInfo.appendChild(spanCost);
+        divInfo.appendChild(spanDividends);
+        divInfo.appendChild(spanQuantity);
+        divInfo.appendChild(spanPriceChange);
+        divInfo.appendChild(infoImg);
+        divOneSectionContainer.appendChild(buttonBuy)
+        divOneSectionContainer.appendChild(buttonSell)
+        divOneSectionContainer.appendChild(divInfo)
+        scrollingPanel.appendChild(divOneSectionContainer);
+    }
 
-  function initLVLUpAutoButtons(i) {
-    const button = document.createElement('button');
-    button.id = `btn_auto_${i + 1}_lvl_test`;
-    button.classList.add(`btn_global`);
-
-    const span1 = document.createElement('span');
-    span1.classList.add(`btn_text_description`);
-    span1.textContent = `Machine ${i + 1} Lvl up.`;
-
-    const span2 = document.createElement('span');
-    span2.classList.add(`btn_text_price`);
-    span2.id = `btn_auto_${i + 1}_price_test`;
-    span2.textContent = 100 * autoLVLUpMultiply[i] + `$`;
-
-    button.appendChild(span1);
-    button.appendChild(span2);
-    container.appendChild(button);
-
-    handleLVLUpAutoButton(i + 1, 100);
-  }
-
-  for (let i = 0; i < numButtonCopies; i++) {
-    initAutoButtons(i);
-  }
-  for (let i = 0; i < numButtonCopies; i++) {
-    initLVLUpAutoButtons(i);
-  }
+    initDropBox();
+    for (let i = 0; i < imgName.length; i++) {
+        initSections(i)
+    }
 });
 
-function updateButtonValue(buttonId, price, value) {
-  const button = document.getElementById(buttonId);
-  button.addEventListener("click", function() {
-    score = score - price;
-    document.getElementById("money_img").innerText = score.toLocaleString();
-    if1();
-    updating += value;
-  });
-}
+function setBuyButtonEvent(button, quantityText, spanCost) {
+    button.addEventListener("click", function() {
 
-function handleAutoButtonClick(index, cost, duration) {
-  let auto_active = false;
+        fetch("http://localhost:8080/clients")
+            .then((response) => response.json())
+            .then((json) => console.log(json));
 
-  let buttonId = `btn_auto_${index}`;
-  let progressBarId = `progress_bar_${index}`;
-
-  const button = document.getElementById(buttonId);
-  button.addEventListener("click", function() {
-    if (auto_active === false) {
-      score = score - cost + autoLVLs[index];
-      document.getElementById("money_img").innerText = score.toLocaleString();
-      if1();
-      let progress = 0;
-      auto_active = true;
-      button.disabled = true;
-      setInterval(function () {
-        progress++;
-        let progressBar = document.getElementById(progressBarId);
-        progressBar.style.width = (progress / duration) * 100 + '%';
-        if (progress >= duration) {
-          score = score + autoLVLs[index];
-          document.getElementById("money_img").innerText = score.toLocaleString();
-          progress = 0;
+        let price = parseFloat(spanCost.textContent.slice(0, -1));
+        console.log("click")
+        if (canNotBuy(score - price)) {
+            return;
         }
-      }, 10);
+        score = score - price;
+        document.getElementById("money_img").innerText = score.toLocaleString();
+        quantityText.innerText = parseFloat(quantityText.innerText) + 1;
+    });
+}
+
+function canNotBuy (value) {
+    if (value < 0) {
+        return true;
     }
-  });
+    return false;
 }
 
-function handleLVLUpAutoButton(index, cost) {
-  let buttonId = `btn_auto_${index}_lvl_test`;
-  let priceId = `btn_auto_${index}_price_test`;//поменять имя
-  let lvlId = `btn_auto_${index}_lvl`;//поменять имя
-
-  const button = document.getElementById(buttonId);
-  button.addEventListener("click", function() {
-    score = score - cost * autoLVLs[index] * autoLVLUpMultiply[index - 1];
-    document.getElementById("money_img").innerText = score.toLocaleString();
-    let btn_text = document.getElementById(priceId);
-    autoLVLs[index] += 1;
-    btn_text.innerHTML = cost * autoLVLs[index] * autoLVLUpMultiply[index - 1] + "$";
-    let btn_lvl = document.getElementById(lvlId);
-    btn_lvl.innerHTML = "Lvl " + autoLVLs[index];
-    if1();
-  });
+async function fetchExchangeRate() {
+    const response = await fetch('https://api.exchangerate-api.com/v4/latest/RUB'); // меняйте на актуальный API
+    const data = await response.json();
+    return data.rates.USD; // курс рубля к доллару
 }
 
-function if1 () {
-  if (score < -100) {
-    document.write("Вы проиграли, так-как вы превысили лимит кредита");
-  }
+async function moexTickerLast(ticker) {
+    return fetch('https://iss.moex.com/iss/engines/stock/markets/shares/securities/' + ticker + '.json')
+        .then(function(res) { return res.json(); })
+        .then(function(json) {
+            let data = json.marketdata.data;
+            let filteredData = data.filter(function(d) { return ['TQBR', 'TQTF'].indexOf(d[1]) !== -1; })[0];
+            return filteredData[12] !== null ? filteredData[12] : filteredData[36];
+        });
 }
-function reboot () {
-  alert("Ваш уровень прокачки " + updating + ". Ваш баланс " + score + " .");
+
+async function getPriceInUSD(spanCost, ticker) {
+    try {
+        const priceInRubles = await moexTickerLast(ticker);
+        const exchangeRate = await fetchExchangeRate();
+        const priceInUSD = (priceInRubles * exchangeRate).toFixed(2); // Конвертируем и округляем до 2 знаков
+
+        spanCost.textContent = priceInUSD + '$';
+    } catch (error) {
+        console.error('Ошибка:', error);
+        spanCost.textContent = "error";
+    }
 }
